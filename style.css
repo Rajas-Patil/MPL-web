@@ -185,14 +185,14 @@ p {
   background-color: #fff2e4 ;
 }
 
-#sm-banner{
+#sm-banner1{
   display: flex;
   justify-content:center;
   flex-wrap: wrap;
  
 }
 
-#sm-banner .banner-box{
+#sm-banner1 .banner-box{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -205,7 +205,53 @@ p {
   background-image: url("img/banner/tractor1.webp");
   color: white;
 }
-#sm-banner .banner-box h2{
+#sm-banner1 .banner-box h2{
+  color: white;
+}
+#sm-banner2{
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+ 
+}
+
+#sm-banner2 .banner-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url("img/banner/Certified\ Product.jpg");
+  color: white;
+}
+#sm-banner2 .banner-box h2{
+  color: white;
+}
+#sm-banner3{
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+ 
+}
+
+#sm-banner3 .banner-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  background-image: url("img/banner/Things\ to\ know\ about\ soil.jpg");
+  color: white;
+}
+#sm-banner3 .banner-box h2{
   color: white;
 }
 
@@ -259,3 +305,53 @@ p {
 }
 
 
+footer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+footer .col{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+footer .col-1{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+}
+
+footer ,logo{
+  margin-bottom: 30px;
+}
+footer h4{
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+footer p{
+  font-size: 13px;
+  margin: 0 0 8px 0;
+}
+footer a{
+  font-size: 13px;
+  text-decoration: none;
+  color: #222;
+  margin-bottom: 10px;
+
+}
+
+footer .follow{
+  margin-top: 20px;
+  
+}
+footer .follow i{
+  color: #465b52;
+  padding-right: 4px;
+  cursor: pointer;
+
+}
+footer .install .row img{
+  border: 1px solid #088178;
+  border-radius: 6px;
+}
