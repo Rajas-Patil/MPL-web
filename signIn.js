@@ -1,32 +1,19 @@
-const formOpenBtn = document.querySelector("#form-open"),
-  home = document.querySelector(".home"),
-  formContainer = document.querySelector(".form_container"),
-  formCloseBtn = document.querySelector(".form_close"),
-  signupBtn = document.querySelector("#signup"),
-  loginBtn = document.querySelector("#login"),
-  pwShowHide = document.querySelectorAll(".pw_hide");
+function validateLogin() {
+    // Sample credentials
+    const validUsername = "user";
+    const validPassword = "password";
 
-formOpenBtn.addEventListener("click", () => home.classList.add("show"));
-formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
+    // Get input values
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-pwShowHide.forEach((icon) => {
-  icon.addEventListener("click", () => {
-    let getPwInput = icon.parentElement.querySelector("input");
-    if (getPwInput.type === "password") {
-      getPwInput.type = "text";
-      icon.classList.replace("uil-eye-slash", "uil-eye");
+    // Validate input
+    if (username === validUsername && password === validPassword) {
+        // Redirect on successful login
+        window.location.href = "welcome.html";  // Change this URL to the page you want to redirect to
     } else {
-      getPwInput.type = "password";
-      icon.classList.replace("uil-eye", "uil-eye-slash");
+        // Show error message
+        const errorMessage = document.getElementById("error-message");
+        errorMessage.style.display = "block";
     }
-  });
-});
-
-signupBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  formContainer.classList.add("active");
-});
-loginBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  formContainer.classList.remove("active");
-});
+}
