@@ -99,3 +99,41 @@ function addToCart(productName, productPrice) {
     window.location.href = `product-details.html?product=${encodeURIComponent(productName)}&price=${productPrice}`;
   }
   
+
+ //Add to cart
+  document.getElementById('add-to-cart').addEventListener('click', async (event) => {
+    const productId = event.target.getAttribute('data-product-id');
+    const token = localStorage.getItem('authToken');  // Get the token from localStorage
+  
+    const response = await fetch('http://localhost:3000/api/cart/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ user_id: 1, product_id: productId, quantity: 1 })  // Replace user_id dynamically
+    });
+  
+    const data = await response.text();
+    alert(data);
+  });
+  
+
+  //Buy Now
+  document.getElementById('buy-now').addEventListener('click', async (event) => {
+    const productId = event.target.getAttribute('data-product-id');
+    const token = localStorage.getItem('authToken');  // Get the token from localStorage
+  
+    const response = await fetch('http://localhost:3000/api/orders/buy', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ user_id: 1, product_id: productId })  // Replace user_id dynamically
+    });
+  
+    const data = await response.text();
+    alert(data);
+  });
+  
