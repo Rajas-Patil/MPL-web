@@ -83,6 +83,85 @@
             }
         });
     </script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+    
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+    
+          // Example hardcoded credentials (replace with real authentication)
+          const validUsername = 'user';
+          const validPassword = 'password123';
+    
+          if (username === validUsername && password === validPassword) {
+            // Save login status in local storage or session storage
+            localStorage.setItem('isLoggedIn', 'true');
+    
+            // Redirect to shop page after successful login
+            window.location.href = 'shop.html';
+          } else {
+            alert('Invalid username or password');
+          }
+        });
+      </script>
+    </body>
+    <!-- </html>
+    Step 4: Protecting Shop Page (Redirect if Not Logged In)
+    In shop.html, add a check to see if the user is logged in before showing the content:
+    
+    shop.html (Updated with Login Check)
+    html
+    Copy code -->
+    <!-- <script>
+      // Check if the user is logged in
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+      if (!isLoggedIn) {
+        // Redirect to login page if not logged in
+        window.location.href = 'shop.html';
+      }
+    </script> -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login</title>
+    </head>
+    <body>
+      <h1>Login</h1>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+      </form>
+    
+      <!-- <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+    
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+    
+          // Example hardcoded credentials (replace with real authentication)
+          const validUsername = 'user';
+          const validPassword = 'password123';
+    
+          if (username === validUsername && password === validPassword) {
+            // Save login status in local storage or session storage
+            localStorage.setItem('isLoggedIn', 'true');
+    
+            // Redirect to shop page after successful login
+            window.location.href = 'shop.html';
+          } else {
+            alert('Invalid username or password');
+          }
+        });
+      </script> -->
+    </body>
+    </html>
+    
 
     <!-----------------------------FOOTER----------------------------------------------------->
     <!--

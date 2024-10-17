@@ -1,3 +1,9 @@
+let loginshop = document.querySelector('wrapper');
+addEventListener(onclick, )
+
+
+
+
 function validateLogin() {
     // Sample credentials
     const validUsername = "user";

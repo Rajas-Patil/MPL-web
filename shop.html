@@ -291,6 +291,35 @@
             <img src="img/pay/pay.png" alt="">
         </div>
     </footer>
+    <script>
+      // Add to Cart button functionality
+      function addToCart(productId) {
+        // Example product object (you should dynamically get product info)
+        const product = {
+          id: productId,
+          name: document.querySelector(`#product-name-${productId}`).innerText,
+          price: document.querySelector(`#product-price-${productId}`).innerText,
+        };
+      
+        // Get the cart from local storage or initialize it if it's empty
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Add the product to the cart
+        cart.push(product);
+        
+        // Update local storage with the new cart data
+        localStorage.setItem('cart', JSON.stringify(cart));
+      
+        alert('Product added to cart');
+      }
+      
+      // Buy Now button functionality
+      function buyNow(productId) {
+        // Redirect to checkout page
+        window.location.href = 'checkout.html?product=' + productId;
+      }
+      </script>
+      
 
     
    
