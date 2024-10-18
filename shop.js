@@ -83,57 +83,155 @@ function addToCart(productName, productPrice) {
   
 
 
-  // JS for main page to add to cart and buy now
+//   // JS for main page to add to cart and buy now
 
-  // Add to Cart function
-function addToCart(productName, productPrice) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push({ productName, productPrice });
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${productName} has been added to the cart!`);
-    window.location.href = "cart.html"; // Redirect to cart page
-  }
+//   // Add to Cart function
+// function addToCart(productName, productPrice) {
+//     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     cart.push({ productName, productPrice });
+//     localStorage.setItem('cart', JSON.stringify(cart));
+//     alert(`${productName} has been added to the cart!`);
+//     window.location.href = "cart.html"; // Redirect to cart page
+//   }
   
-  // Buy Now function
-  function buyNow(productName, productPrice) {
-    window.location.href = `product-details.html?product=${encodeURIComponent(productName)}&price=${productPrice}`;
-  }
+//   // Buy Now function
+//   function buyNow(productName, productPrice) {
+//     window.location.href = `product-details.html?product=${encodeURIComponent(productName)}&price=${productPrice}`;
+//   }
   
 
- //Add to cart
-  document.getElementById('add-to-cart').addEventListener('click', async (event) => {
-    const productId = event.target.getAttribute('data-product-id');
-    const token = localStorage.getItem('authToken');  // Get the token from localStorage
+//  //Add to cart
+//   document.getElementById('add-to-cart').addEventListener('click', async (event) => {
+//     const productId = event.target.getAttribute('data-product-id');
+//     const token = localStorage.getItem('authToken');  // Get the token from localStorage
   
-    const response = await fetch('http://localhost:3000/api/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ user_id: 1, product_id: productId, quantity: 1 })  // Replace user_id dynamically
+//     const response = await fetch('http://localhost:3000/api/cart/add', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${token}`
+//       },
+//       body: JSON.stringify({ user_id: 1, product_id: productId, quantity: 1 })  // Replace user_id dynamically
+//     });
+  
+//     const data = await response.text();
+//     alert(data);
+//   });
+  
+
+//   //Buy Now
+//   document.getElementById('buy-now').addEventListener('click', async (event) => {
+//     const productId = event.target.getAttribute('data-product-id');
+//     const token = localStorage.getItem('authToken');  // Get the token from localStorage
+  
+//     const response = await fetch('http://localhost:3000/api/orders/buy', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${token}`
+//       },
+//       body: JSON.stringify({ user_id: 1, product_id: productId })  // Replace user_id dynamically
+//     });
+  
+//     const data = await response.text();
+//     alert(data);
+//   });
+  
+
+
+
+// SHOP BACKEND
+// const express = require('express');
+// const router = express.Router();
+// const connection = require('./db'); // MySQL connection
+
+// Purchase route
+// router.post('/purchase', (req, res) => {
+//     const { userId, productName } = req.body;
+
+//     if (!userId || !productName) {
+//         return res.status(400).json({ error: 'Missing user ID or product name' });
+//     }
+
+//     // Insert purchase details into the 'orders' table
+//     const query = `INSERT INTO orders (user_id, product_name) VALUES (?, ?)`;
+//     connection.query(query, [userId, productName], (err, result) => {
+//         if (err) {
+//             res.status(500).json({ error: 'Database error' });
+//         } else {
+//             res.json({ message: 'You have purchased an order', orderId: result.insertId });
+//         }
+//     });
+// });
+
+// module.exports = router;
+
+const express = require('express');
+const router = express.Router();
+const connection = require('./db'); // MySQL connection
+
+// Purchase route
+router.post('/purchase', (req, res) => {
+    const { userId, productName } = req.body;
+
+    if (!userId || !productName) {
+        return res.status(400).json({ error: 'Missing user ID or product name' });
+    }
+
+    // Insert purchase details into the 'orders' table
+    const query = `INSERT INTO orders (user_id, product_name) VALUES (?, ?)`;
+    connection.query(query, [userId, productName], (err, result) => {
+        if (err) {
+            res.status(500).json({ error: 'Database error' });
+        } else {
+            res.json({ message: 'You have purchased an order', orderId: result.insertId });
+        }
     });
-  
-    const data = await response.text();
-    alert(data);
-  });
-  
+});
 
-  //Buy Now
-  document.getElementById('buy-now').addEventListener('click', async (event) => {
-    const productId = event.target.getAttribute('data-product-id');
-    const token = localStorage.getItem('authToken');  // Get the token from localStorage
-  
-    const response = await fetch('http://localhost:3000/api/orders/buy', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({ user_id: 1, product_id: productId })  // Replace user_id dynamically
+module.exports = router;
+
+
+
+
+// FOR LOGIN FORM CONNECT TO SHOP 
+// Function triggered when the user clicks the "Buy" button for a product
+function buyProduct(productName, productId) {
+    // Get the logged-in user's ID from localStorage
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        alert('Please log in to make a purchase.');
+        return;
+    }
+
+    // Send the purchase request to the backend
+    fetch('http://localhost:3000/api/purchase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            userId: userId,
+            productName: productName
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === 'You have purchased an order') {
+            alert(`Successfully purchased ${productName} with order ID: ${data.orderId}`);
+            // Redirect to the thank-you page with the product details
+            window.location.href = `thankyou.html?productName=${encodeURIComponent(productName)}&orderId=${data.orderId}`;
+        } else {
+            alert('Purchase failed. Please try again.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred during the purchase.');
     });
-  
-    const data = await response.text();
-    alert(data);
-  });
-  
+}
+
+
+
+
