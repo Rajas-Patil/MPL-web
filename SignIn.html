@@ -1,205 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinest</title>
-    <link rel="stylesheet" href="SignIn.css">
-    <link rel="stylesheet" href="style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="SignIn.css">
 </head>
-
 <body>
-    <!-- Header Section -->
-    <div class="header">
-        <section id="header">
-            <a href=""><img src="/img/banner/Agrinest logo.jpg" alt="weblogo"></a>
-            <div>
-                <ul id="navbar">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a class="active" href="SignIn.html">Sign In</a></li>
-                    <li><a href="cart.html"><i class="fa-light fa-cart-shopping"></i></a></li>
-                </ul>
-            </div>
-        </section>
+  <section id="header">
+    <a href=""><img src="/img/banner/Agrinest logo.jpg" alt="weblogo"></a>
+    <div>
+      <ul id="navbar">
+        <li><a href="index.html">Home</a></li>
+        <li><a  href="shop.html">Shop</a></li>
+        <!-- <li><a href="blog.html">Blog</a></li> -->
+        <li><a href="about.html">About</a></li>
+        <li><a class="active" href="SignIn.html">Sign In</a></li>
+        <link rel="stylesheet" href="style.css">
+        <li><a href="cart.html"><i class="fa-light fa-cart-shopping"></i></a></li>
+      </ul>
     </div>
-
-    <!-- Login Form Section -->
-    <div class="wrapper" class="container">
-        <form id="loginForm" id="signInForm">
-            <h1>Email</h1>
-            <div class="input-box">
-                <input type="text" id="login-username" placeholder="Username"  type="email" id="email" name="email" required>
-                <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-                <input type="password" id="login-password" placeholder="Password" type="password" id="password" name="password" required>
-                <i class='bx bxs-lock-alt'></i>
-            </div>
-
-            <div class="remember-forget">
-                <label><input type="checkbox"> Remember me </label>
-                <a href="#">Forget Password?</a>
-            </div>
-
-            <button type="submit" class="btn">Login</button>
-
-            <div class="register-link">
-                <p>Don't have an account? <a href="#">Register</a></p>
-            </div>
-        </form>
+  </section>
+	<img class="wave" src="img/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="img/bg.svg">
+		</div>
+		<div class="login-content">
+			<form action="index.html">
+				<img src="img/avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Email</h5>
+           		   		<input type="text" class="input">
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input">
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Login">
+            </form>
+        </div>
     </div>
-
-    <!-- <script>
-        document.getElementById('loginForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
-
-            try {
-                const response = await fetch('http://localhost:3000/api/users/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-
-                const data = await response.json();
-                if (data.token) {
-                    localStorage.setItem('authToken', data.token);
-                    alert('Login successful!');
-                } else {
-                    alert('Login failed: ' + (data.message || 'Invalid credentials.'));
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred during login. Please try again.');
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent form submission
-    
-          const username = document.getElementById('username').value;
-          const password = document.getElementById('password').value;
-    
-          // Example hardcoded credentials (replace with real authentication)
-          const validUsername = 'user';
-          const validPassword = 'password123';
-    
-          if (username === validUsername && password === validPassword) {
-            // Save login status in local storage or session storage
-            localStorage.setItem('isLoggedIn', 'true');
-    
-            // Redirect to shop page after successful login
-            window.location.href = 'shop.html';
-          } else {
-            alert('Invalid username or password');
-          }
-        });
-      </script> -->
-    <!-- </body> -->
-    <!-- </html>
-    Step 4: Protecting Shop Page (Redirect if Not Logged In)
-    In shop.html, add a check to see if the user is logged in before showing the content:
-    
-    shop.html (Updated with Login Check)
-    html
-    Copy code -->
-    <!-- <script>
-      // Check if the user is logged in
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
-    
-      if (!isLoggedIn) {
-        // Redirect to login page if not logged in
-        window.location.href = 'shop.html';
-      }
-    </script> -->
-   
-    
-      <!-- <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent form submission
-    
-          const username = document.getElementById('username').value;
-          const password = document.getElementById('password').value;
-    
-          // Example hardcoded credentials (replace with real authentication)
-          const validUsername = 'user';
-          const validPassword = 'password123';
-    
-          if (username === validUsername && password === validPassword) {
-            // Save login status in local storage or session storage
-            localStorage.setItem('isLoggedIn', 'true');
-    
-            // Redirect to shop page after successful login
-            window.location.href = 'shop.html';
-          } else {
-            alert('Invalid username or password');
-          }
-        });
-      </script> -->
-    <!-- </body>
-    </html> -->
-    
-
-    <!-----------------------------FOOTER----------------------------------------------------->
-    <!--
-      <footer class="section-p1">
-        <div class="col">
-            <img class="logo" src="img/banner/Agrinest logo.jpg" alt="" width="60" height="70">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>Lorem ipsum dolor sit amet.</p>
-            <p><strong>Phone:</strong>Lorem ipsum dolor sit amet.</p>
-            <div class="follow">
-                <h4>follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                     <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i> 
-            </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <h4>About</h4>
-            <a href="#">About Us</a>
-            <a href="#">Delivery information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Contact Us</a>
-        </div>
-        <div class="col-1"></div>
-            <h4>My Account</h4>
-            <a href="#">Sign In</a>
-            <a href="#">View Cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Track My Order</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="col install">
-            <h4>Install App</h4>
-            <p>From App Store or Google Play</p>
-            <div class="row">
-                <img src="img/pay/app.jpg" alt="">
-                <img src="img/pay/play.jpg" alt="">
-            </div>
-            <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" alt="">
-        </div>
-    </footer>
-    -->
-    <!-----------------------------////-FOOTER////---------------------------------------------->
-<script src="signIn.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="signIn.js"></script>
 </body>
-
 </html>
